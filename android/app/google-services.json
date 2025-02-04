@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "202485170107",
+    "project_id": "medscan-8fb49",
+    "storage_bucket": "medscan-8fb49.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202485170107:android:b32cbe537b9c9491b1ce9e",
+        "android_client_info": {
+          "package_name": "com.medscan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202485170107-on3ib49vrrivuo84vp0dap5o7d6ia2nq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.medscan",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "202485170107-56rohr9f5p2icdtvp8a7b46flv8cshsc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKCHAEsS5hgXlLf139ShamGplkgpxzPOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202485170107-56rohr9f5p2icdtvp8a7b46flv8cshsc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
