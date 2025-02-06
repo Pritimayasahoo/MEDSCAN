@@ -21,14 +21,21 @@ const sendImage = async (imagePath) => {
    
 
     const requestData = {
-        "email_id":email_id,
-        "image_base64":base64Image
-    }
+        "email_id": email_id,
+        "image_base64": base64Image
+    }   
 
      //axios.post('https://aiapi.robosensy.in/upload-image/', requestData).then(response => console.log("Image Uploaded!", response)).catch(error => console.log("Upload Failed", error));
      console.log("sending image")
     const response = await axios.post("https://aiapi.robosensy.in/upload-image/", requestData)
-    console.log(response,"coming server")
+    const medicine_details=response.data.extracted_text.medicine_details
+    console.log(medicine_details,"details of medicine")
+    if (medicine_details == "No medicine needed") {
+        throw new Error("No medicines Found");
+    }
+    
+    return response.data.extracted_text.medicine_details
+    //console.log(response.data.extracted_text.medicine_details,"coming server")
     //     .then(response => console.log("Image Uploaded!", response))
     //     .catch(error => console.log("Upload Failed", error));
 };

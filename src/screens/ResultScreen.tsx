@@ -5,16 +5,23 @@ import {  DataTable, Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../styles/colors';
 import AppBar from '../Header/AppBar';
+import SaveImageScreen from '../Database/RealmWrite';
 
-const prescriptions = [
-    { medicine: 'Paracetamol', dosage: '500 mg', frequency: 'Twice a day' },
-    { medicine: 'Paracetamol', dosage: '500 mg', frequency: 'Twice a day' },
-    { medicine: 'Paracetamol', dosage: '500 mg', frequency: 'Twice a day' },
-    { medicine: 'Paracetamol', dosage: '500 mg', frequency: 'Twice a day' },
-];
+// const prescriptions = [
+//     { medicine: 'Paracetamol', dosage: '500 mg', frequency: 'Twice a day' },
+//     { medicine: 'Paracetamol', dosage: '500 mg', frequency: 'Twice a day' },
+//     { medicine: 'Paracetamol', dosage: '500 mg', frequency: 'Twice a day' },
+//     { medicine: 'Paracetamol', dosage: '500 mg', frequency: 'Twice a day' },
+// ];
 
-export default function jApp() {
-    const navigation = useNavigation();
+export default function jApp({ navigation, route }) {
+
+    const medicine_details = route.params.medicine_details
+    const image = route.params.image
+    const prescriptions = medicine_details
+
+    console.log(medicine_details,"detail of the screen")
+    //const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <AppBar navigation={navigation} title={'Result'} backgroundColor={colors.brand_primary} />
@@ -41,9 +48,9 @@ export default function jApp() {
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => (
                             <DataTable.Row style={styles.tableData}>
-                                <DataTable.Cell>{item.medicine}</DataTable.Cell>
-                                <DataTable.Cell>{item.dosage}</DataTable.Cell>
-                                <DataTable.Cell>{item.frequency}</DataTable.Cell>
+                                <DataTable.Cell>{item.MedicineName}</DataTable.Cell>
+                                <DataTable.Cell>{item.Dose}</DataTable.Cell>
+                                <DataTable.Cell>{item.Time}</DataTable.Cell>
                             </DataTable.Row>
                         )}
                     />
@@ -55,11 +62,7 @@ export default function jApp() {
 
             {/* Buttons */}
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button}
-                onPress={()=>navigation.navigate('SavedResultScreen')}
-                >
-                    <Text style={styles.buttonText}>Save to History</Text>
-                </TouchableOpacity>
+                <SaveImageScreen imageUri={image}/>
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>Share Results</Text>
                 </TouchableOpacity>

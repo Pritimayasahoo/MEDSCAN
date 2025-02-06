@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-nati
 import React from 'react'
 import PrescriptionScreen from '../screens/PrescriptionScreen';
 import MedicinesScreen from '../screens/MedicinesScreen';
-import { TabScreens } from '../navigation/TabScreens';
+import { TabScreens } from './TabScreens';
 //import Feather from '@react-native-vector-icons/Feather';
 import colors from '../styles/colors';
 import AppBar from '../Header/AppBar';
@@ -13,10 +13,10 @@ const { width, height } = Dimensions.get('window');
 
 const Tab = createMaterialTopTabNavigator();
 
-const TopTabNavigation = ({ navigation, title }: any) => {
+const HistoryScreen = ({ navigation, title }: any) => {
   return (
-    <View style={{ flex: 1, backgroundColor: 'white', padding:10 }}>
-      <AppBar navigation={navigation} title={'History'} backgroundColor={undefined}/>
+    <View style={{ flex: 1, backgroundColor: 'white', padding: 10 }}>
+      <AppBar navigation={navigation} title={'History'} backgroundColor={undefined} />
       {/* <View style={styles.header}>
         <View>
           <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
@@ -61,7 +61,7 @@ const TopTabNavigation = ({ navigation, title }: any) => {
   )
 }
 
-export default TopTabNavigation
+export default HistoryScreen
 
 const styles = StyleSheet.create({
   header: {
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: colors.brand_primary,
     padding: 16,
-    borderRadius:20,
+    borderRadius: 20,
     // borderBottomLeftRadius: 20,
     // borderBottomRightRadius: 20,
     height: height * 0.1,

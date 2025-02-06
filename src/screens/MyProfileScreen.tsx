@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from "react-native";
 import AppBar from "../Header/AppBar";
 import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const MyProfileScreen = ({ navigation }: any) => {
-  const [name, setName] = useState("Sarah Doe");
-  const [email, setEmail] = useState("sarahdoe@gmail.com");
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  
+  useEffect(()=>{
+       async function getprofile() {
+         const username = await AsyncStorage.getItem('username');
+         const userEmail = await AsyncStorage.getItem("email_id")
+         setName(username)
+         setEmail(userEmail)
+       }
+       getprofile()
+  },[])
+
+  
+  
   return (
     <View style={styles.container}>
       <AppBar navigation={navigation} title={'My Profile'} backgroundColor={undefined} />

@@ -9,8 +9,10 @@ const SignInWithGoogleScreen = ({signin}) => {
 
   async function GoogleSignin() {
     try {
-      const email = await signInWithGoogle();
+      const { email, username } = await signInWithGoogle();
+      console.log(email,username,"all")
       await AsyncStorage.setItem('email_id', email)
+      await AsyncStorage.setItem('username', username)
       signin(true);
       //console.log(result);
     } catch (error) {

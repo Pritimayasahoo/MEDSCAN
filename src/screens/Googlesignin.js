@@ -22,12 +22,13 @@ const signInWithGoogle = async () => {
       // Grab the user's name after successful login
       const user = userCredential.user;
       const email = user.email;
+      const username = user.displayName;
       console.log("Name:", user.displayName);
       console.log("Email:", user.email);  // ✅ Get Email ID
           
       console.log("Login successful");
 
-      return email
+  return {email, username}
     
   };
 

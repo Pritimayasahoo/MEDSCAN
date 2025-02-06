@@ -3,8 +3,11 @@ import sendImage from '../Api/Sendimage';
 import { useEffect,useState } from 'react';
 import { ActivityIndicator } from 'react-native-paper';
 import RNFS from 'react-native-fs';
+import { useNavigation } from '@react-navigation/native';
 
 const Showimage = ({ src, setImage, setimages }) => {
+
+  const navigation = useNavigation();
 
   const [loading,setloading] = useState(false)
   const [saveimage,setsaveimage] = useState(false)
@@ -25,12 +28,20 @@ const Showimage = ({ src, setImage, setimages }) => {
   }, []);
 
 async function sendtoserver() {
+  try{
   setloading(true)
-  await sendImage(src)
+  const medicine_details = await sendImage(src)
+  console.log(medicine_details,"all medicines")
   setimages(prevImages => [...prevImages, src]);
-  setImage(null);
+    navigation.navigate('ResultScreen', {"medicine_details" : medicine_details,"image" : src});
+  //setImage(null);
   //setsaveimage(true)
   //setloading(false)
+  }
+  catch(e){
+    Alert.alert('Error', e.message);
+    setImage(null);
+  }
   
 }
 

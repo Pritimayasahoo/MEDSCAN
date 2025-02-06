@@ -7,12 +7,17 @@ import { useNavigation } from '@react-navigation/native';
 //import Pickimage from './Cameracaptcha'
 import Showimage from './Showimage'
 import sendImage from '../Api/Sendimage';
-
+import { useQuery } from '@realm/react';
+import { ImageSchema } from '../Database/RealmSchema';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const { width, height } = Dimensions.get('window');
 
 
 const HomeScreen = () => {
       const navigation = useNavigation();
+      const username = AsyncStorage.getItem('username');
+
+    const Allimages = useQuery(ImageSchema); // Fetch all images
     
     const [images, setImages] = useState([]); // Store multiple images
     const [image, setImage] = useState(null);
@@ -56,7 +61,7 @@ const HomeScreen = () => {
 
                 <View style={styles.body}>
 
-                    <Text style={styles.welcomeText}>Welcome back, Sarah!</Text>
+                    <Text style={styles.welcomeText}>Welcome back, {username}!</Text>
                     <Text style={styles.subText}>Let's scan your prescription</Text>
 
                    
@@ -79,21 +84,22 @@ const HomeScreen = () => {
                     {/* Recent Scans Section */}
                     <View style={styles.recentScans}>
                         <Text style={styles.sectionTitle}>Recent Scans</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('HistoryScreen')}>
                             <Text style={styles.viewAll}>View All</Text>
                         </TouchableOpacity>
                     </View>
 
                     {/* Display Multiple Uploaded Images */}
-                    {images.length > 0 && (
+                    {Allimages.length > 0 && (
                         <FlatList
-                            data={images}
-                            keyExtractor={(item, index) => index.toString()}
+                            data={Allimages}
+                            keyExtractor={(item) => item._id.toString()}
                             numColumns={3} // Display images in a grid (3 per row)
                             renderItem={({ item }) => (
                                 <View style={styles.imageContainer}>
-                                    <Image source={{ uri: item }} style={styles.uploadedImage} />
+                                  <Image source={{ uri: item.uri }} style={styles.uploadedImage} />
                                 </View>
+
                             )}
                         />
                     )}

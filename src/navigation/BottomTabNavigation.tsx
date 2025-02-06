@@ -72,7 +72,9 @@ import HomeScreen from '../screens/HomeScreen';
 import PaymentScreen from '../screens/PaymentScreen';
 import MyProfileScreen from '../screens/MyProfileScreen';
 import Icon from '@react-native-vector-icons/fontawesome'; 
+import MaterialIcons from '@react-native-vector-icons/material-icons';
 import { useNavigation } from '@react-navigation/native'
+import AntDesign from '@react-native-vector-icons/ant-design';
 
 const Tab = createBottomTabNavigator();
 
@@ -87,14 +89,18 @@ const BottomTabNavigation = ({ navigation }:any) => {
                     let iconName;
                     if (route.name === 'Home') {
                         iconName = focused ? 'home' : 'home-outline';
+                        return <Icon name="home" size={30} color="#900" />;
                     } else if (route.name === 'History') {
                         iconName = focused ? 'history' : 'history';
+                        return <Icon name="history" size={30} color="#900" />;;
                     } else if (route.name === 'Pay') {
                         iconName = focused ? 'cart' : 'cart-outline';
+                        return <MaterialIcons name="payments" color="#ff0000" size={20} />
                     } else if (route.name === 'Profile') {
                         iconName = focused ? 'account' : 'account-outline';
+                        return <AntDesign name="profile" color="#ff0000" size={20} />
                     }
-                    return <Icon name="rocket" size={30} color="#900" />;;
+                    
                 },
                 tabBarActiveTintColor: '#000',
                 tabBarInactiveTintColor: '#888',
@@ -106,6 +112,7 @@ const BottomTabNavigation = ({ navigation }:any) => {
             <Tab.Screen 
                 name='History' 
                 component={PaymentScreen} 
+                
                 listeners={({ navigation }) => ({
                     tabPress: (e) => {
                         e.preventDefault();  // Prevent default tab switching
