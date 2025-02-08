@@ -4,7 +4,7 @@ import { useRealm } from '@realm/react';
 import { ImageSchema } from './RealmSchema'
 import { useNavigation } from '@react-navigation/native';
 
-const SaveImageScreen = ({ imageUri }) => {
+const SaveImageScreen = ({ imageUri, prescriptions }) => {
     const navigation = useNavigation()
     const realm = useRealm();
 
@@ -18,6 +18,7 @@ const SaveImageScreen = ({ imageUri }) => {
             realm.create('Image', {
                 _id: Date.now(), // Unique ID
                 uri: imageUri,  // Image file path
+                prescriptions:prescriptions
             });
         });
 

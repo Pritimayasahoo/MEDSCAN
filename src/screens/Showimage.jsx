@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text, View, Image, BackHandler, Alert, PermissionsAndroid, Platform } from 'react-native'
 import sendImage from '../Api/Sendimage';
 import { useEffect,useState } from 'react';
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator, Button } from 'react-native-paper';
 import RNFS from 'react-native-fs';
 import { useNavigation } from '@react-navigation/native';
 
@@ -128,7 +128,7 @@ if(loading){
         //sendImage(src)
         //setImage(null)
       }}>
-        <Text>SEND IMAGE</Text>
+        <Button style={{margin:10,backgroundColor:"lightgreen"}}>SEND IMAGE</Button>
       </Pressable>
 
       {/* {!saveimage ? <Pressable onPress={()=>{

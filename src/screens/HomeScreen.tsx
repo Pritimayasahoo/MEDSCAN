@@ -115,7 +115,7 @@ const HomeScreen = () => {
                            
                            
                         <TouchableOpacity style={styles.buyScansButton}
-                        onPress={()=>navigation.navigate('ResultScreen')}
+                        // onPress={()=>navigation.navigate('ResultScreen')}
                         >
                         <Text style={styles.BuyButton}>Buy Scans Now</Text> 
                         </TouchableOpacity>

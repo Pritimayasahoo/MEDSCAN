@@ -41,16 +41,19 @@ export default function jApp({ navigation, route }) {
                         <DataTable.Title>Medicines</DataTable.Title>
                         <DataTable.Title>Dosage</DataTable.Title>
                         <DataTable.Title>Frequency</DataTable.Title>
+                        <DataTable.Title>quantity</DataTable.Title>
                     </DataTable.Header>
 
                     <FlatList
+                        style={{height: 200 }}
                         data={prescriptions}
                         keyExtractor={(item, index) => index.toString()}
                         renderItem={({ item }) => (
-                            <DataTable.Row style={styles.tableData}>
+                            <DataTable.Row >
                                 <DataTable.Cell>{item.MedicineName}</DataTable.Cell>
-                                <DataTable.Cell>{item.Dose}</DataTable.Cell>
-                                <DataTable.Cell>{item.Time}</DataTable.Cell>
+                                <DataTable.Cell>{item.dosage}</DataTable.Cell>
+                                <DataTable.Cell>{item.timing}</DataTable.Cell>
+                                <DataTable.Cell>{item.quantity}</DataTable.Cell>
                             </DataTable.Row>
                         )}
                     />
@@ -62,7 +65,7 @@ export default function jApp({ navigation, route }) {
 
             {/* Buttons */}
             <View style={styles.buttonContainer}>
-                <SaveImageScreen imageUri={image}/>
+                <SaveImageScreen imageUri={image} prescriptions ={prescriptions}/>
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText}>Share Results</Text>
                 </TouchableOpacity>

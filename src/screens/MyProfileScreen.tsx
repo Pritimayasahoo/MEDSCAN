@@ -9,14 +9,17 @@ const MyProfileScreen = ({ navigation }: any) => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   
   useEffect(()=>{
        async function getprofile() {
          const username = await AsyncStorage.getItem('username');
          const userEmail = await AsyncStorage.getItem("email_id")
+         const userprofile = await AsyncStorage.getItem('profileImage')
          setName(username)
          setEmail(userEmail)
+         setProfileImage(userprofile)
        }
        getprofile()
   },[])
@@ -31,7 +34,7 @@ const MyProfileScreen = ({ navigation }: any) => {
 
         {/* Profile Image with Edit Icon */}
         <View style={styles.imageContainer}>
-          <Image source={require("../images/profileImg.png")} style={styles.profileImage} />
+          <Image source={{ uri: profileImage }} style={styles.profileImage} />
           <TouchableOpacity style={styles.editIcon}>
             <Image source={require("../images/camera.png")} style={styles.editImage} />
           </TouchableOpacity>
@@ -39,20 +42,11 @@ const MyProfileScreen = ({ navigation }: any) => {
 
         {/* Name Input */}
         <Text style={styles.label}>Name</Text>
-        <TextInput
-          style={styles.input}
-          value={name}
-          onChangeText={setName}
-        />
+         <Text style={styles.input}>{name}</Text>
 
         {/* Email Input */}
         <Text style={styles.label}>Email</Text>
-        <TextInput
-          style={styles.input}
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-        />
+        <Text style={styles.input}>{email}</Text>
       </View>
 
     </View>
@@ -96,7 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     alignSelf: "flex-start",
-    marginBottom: 5,
+    //marginBottom: 10,
   },
   input: {
     width: "100%",
